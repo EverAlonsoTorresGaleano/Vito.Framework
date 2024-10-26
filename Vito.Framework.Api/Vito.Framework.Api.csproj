@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsAspireSharedProject>true</IsAspireSharedProject>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Vito.Framewrok.Api</Title>
+    <Description>Common Api Classes for Base Line Projects.</Description>
+    <Copyright>Vito.Torres 2024</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--<FrameworkReference Include="Microsoft.AspNetCore.App" />-->
+
+    <PackageReference Include="Asp.Versioning.Http" />
+
+    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" />
+
+    <PackageReference Include="Azure.Identity" />
+
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+
+    <PackageReference Include="Microsoft.Extensions.Http.Resilience" />
+    <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" />
+    <PackageReference Include="Microsoft.FeatureManagement" />
+    <PackageReference Include="Nerdbank.GitVersioning">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
+    <PackageReference Include="System.Formats.Asn1" />
+    <PackageReference Include="Vito.Framework.Common" />
+  </ItemGroup>
+
+</Project>

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vito.Framework.Api", "Vito.Framework.Api\Vito.Framework.Api.csproj", "{A74B35EA-0328-42AD-B703-AEADD8F0BBB6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{05F77DB8-80CB-4B9C-BE52-FE8A9120BF9C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api 02", "Api 02", "{05F77DB8-80CB-4B9C-BE52-FE8A9120BF9C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Refit", "Refit", "{1C8DF58A-ED69-4E32-8A42-AE2D10BC2F73}"
 EndProject
@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.packages.props = Directory.packages.props
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{2D6442CA-192D-4425-BC1B-6473B8FC398D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Common", "01 Common", "{2D6442CA-192D-4425-BC1B-6473B8FC398D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vito.Framework.Common", "Vito.Framework.Common\Vito.Framework.Common.csproj", "{E1360045-7346-4060-9A66-748B11AB061F}"
 EndProject

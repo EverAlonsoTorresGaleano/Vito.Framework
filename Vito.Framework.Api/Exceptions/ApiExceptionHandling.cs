@@ -7,17 +7,8 @@ using Vito.Framework.Common.Constants;
 
 namespace Vito.Framework.Api.Exceptions;
 
-public class ApiExceptionHandling
+public class ApiExceptionHandling(RequestDelegate _next, ILogger<ApiExceptionHandling> _logger)
 {
-    private readonly RequestDelegate _next;
-    private readonly ILogger<ApiExceptionHandling> _logger;
-
-    public ApiExceptionHandling(RequestDelegate next, ILogger<ApiExceptionHandling> logger)
-    {
-        _next = next;
-        _logger = logger;
-    }
-
     public async Task Invoke(HttpContext context)
     {
         try

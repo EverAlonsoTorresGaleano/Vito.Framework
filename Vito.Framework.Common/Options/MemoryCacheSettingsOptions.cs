@@ -7,8 +7,6 @@ public record MemoryCacheSettingsOptions
 
     public const string SectionName = FrameworkConstants.AppSettings_SectionName_MemoryCacheSettings;
     public int ExpirationScanFrequencyInSeconds { get; set; } = FrameworkConstants.MemoryCache_DefaultExpirationScanFrequencyInSeconds;
-
     public int CacheExpirationInMinutes { get; set; } = FrameworkConstants.MemoryCache_DefaultCacheExpirationInMinutes;
-
-
+    public bool IsCacheEnabled { get; set; } = false;
 }

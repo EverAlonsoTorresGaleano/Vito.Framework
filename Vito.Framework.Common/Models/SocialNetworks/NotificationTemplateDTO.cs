@@ -2,9 +2,15 @@
 
 public class NotificationTemplateDTO
 {
-    public string Id { get; set; }
+    public long Id { get; set; }
 
-    public string TemplateText { get; set; }
+    public string CultureFk { get; set; } = null!;
 
-    public string CultureFk { get; set; }   
+    public string Name { get; set; } = null!;
+
+    public string SubjectTemplateText { get; set; } = null!;
+
+    public string? MessageTemplateText { get; set; }
+
+    public bool IsHtml { get; set; }
 }

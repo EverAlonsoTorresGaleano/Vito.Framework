@@ -44,4 +44,8 @@
     <PackageReference Include="Vito.Framework.Common" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Vito.Framework.Common\Vito.Framework.Common.csproj" />
+  </ItemGroup>
+
 </Project>

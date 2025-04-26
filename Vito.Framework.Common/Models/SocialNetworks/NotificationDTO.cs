@@ -2,9 +2,11 @@
 
 public class NotificationDTO
 {
-    public string NotificationTemplateFk { get; set; } = null!;
+    public long NotificationTemplateFk { get; set; }
 
-    public string? CultureFk { get; set; }
+    public string CultureFk { get; set; } = null!;
+
+    public long NotificationTypeFk { get; set; }
 
     public long Id { get; set; }
 
@@ -26,5 +28,5 @@ public class NotificationDTO
 
     public DateTime? SentDate { get; set; }
 
-    public long NotificationTypeFk { get; set; }
+    public bool IsHtml { get; set; }
 }

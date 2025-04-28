@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Reflection;
+using System.Text;
 using Asp.Versioning.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -22,7 +23,8 @@ public class ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider) : 
         var text = new StringBuilder("An example application with OpenAPI, Swashbuckle, and API versioning.");
         var info = new OpenApiInfo()
         {
-            //Title = "Vito.Core Api",
+            Title = Assembly.GetEntryAssembly()?.GetName().Name,
+            Description = Assembly.GetEntryAssembly()?.GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description,
             Version = description.ApiVersion.ToString(),
             Contact = new OpenApiContact { Name = "Ever Alonso Torres Galeano", Email = "eeatg844@hotmail.com" },
             License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }

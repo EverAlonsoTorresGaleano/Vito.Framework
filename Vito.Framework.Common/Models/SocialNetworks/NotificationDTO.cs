@@ -2,7 +2,9 @@
 
 public class NotificationDTO
 {
-    public long NotificationTemplateFk { get; set; }
+    public long CompanyFk { get; set; }
+
+    public long NotificationTemplateGroupFk { get; set; }
 
     public string CultureFk { get; set; } = null!;
 

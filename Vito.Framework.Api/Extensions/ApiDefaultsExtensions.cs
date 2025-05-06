@@ -35,8 +35,6 @@ public static class ApiDefaultsExtensions
     #region Pre-Build
     public static IHostApplicationBuilder AddPreBuildServiceDefaults(this IHostApplicationBuilder builder)
     {
-        builder.AddDefaultHsts();
-
         builder.ConfigureOpenTelemetry();
 
         builder.AddDefaultHealthChecks();
@@ -130,14 +128,17 @@ public static class ApiDefaultsExtensions
 
 
 
-    public static IHostApplicationBuilder AddDefaultHsts(this IHostApplicationBuilder builder)
+    public static IHostApplicationBuilder AddDefaultHsts(this IHostApplicationBuilder builder, bool enableHsts = true)
     {
-        builder.Services.AddHsts(options =>
+        if (enableHsts)
         {
-            options.Preload = true;
-            options.IncludeSubDomains = true;
-            options.MaxAge = TimeSpan.FromDays(365);
-        });
+            builder.Services.AddHsts(options =>
+            {
+                options.Preload = true;
+                options.IncludeSubDomains = true;
+                options.MaxAge = TimeSpan.FromDays(365);
+            });
+        }
         return builder;
     }
 
@@ -253,6 +254,7 @@ public static class ApiDefaultsExtensions
                 ValidateIssuer = true,
                 ValidateAudience = true,
                 ValidateLifetime = true,
+
                 ClockSkew = TimeSpan.Zero,
             };
         });

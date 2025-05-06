@@ -5,12 +5,12 @@ public class FrameworkConstants
     //Defaults
     public const int MemoryCache_DefaultExpirationScanFrequencyInSeconds = 30;
     public const int MemoryCache_DefaultCacheExpirationInMinutes = 30;
-    
+
     public const int RedisCache_DefaultTokenExpirationInMinutes = 30;
     public const string Culture_DefaultId = "es-CO";
     public const string Culture_TranslationKey_MessageNotFound = "TranslationKey_MessageNotFound";
     public const string Culture_TranslationMessage_MessageNotFound = "Culture: [{0}] ~Message: ({1}) -Not Found";
-    
+
     public const int IdentityServer_DefaultTokenLifeTimeMinutes = 30;
     public const int IdentityServer_MaxUserFailRetrys = 3;
 
@@ -18,7 +18,7 @@ public class FrameworkConstants
 
     public const string AppSettings_SectionName_CultureSettings = "CultureSettings";
     public const string AppSettings_SectionName_DataBaseSettings = "DataBaseSettings";
-    public const string AppSettings_SectionName_EmailSettings  = "EmailSettings";
+    public const string AppSettings_SectionName_EmailSettings = "EmailSettings";
     public const string AppSettings_SectionName_FeatureFlagSettings = "FeatureFlagsSettings";
     public const string AppSettings_SectionName_IdentityServiceClientSettings = "IdentityServiceClientSettings";
     public const string AppSettings_SectionName_IdentityServiceServerSettings = "IdentityServiceServerSettings";
@@ -32,11 +32,18 @@ public class FrameworkConstants
 
     //Header
     public const string Header_CultureId = "CultureId";
+    public const string Header_ApplicationId = "ApplicationId";
+    public const string Header_CompanyId = "CompanyId";
+
+
 
     //User Name
     public const string Username_UserApi = "api-user";
     public const long UserId_UserUnknown = 0;
 
+
+    //Company
+    public const long Company_DefaultId = 1;
 
     //HttpContext
     public const string HttpContext_DeviceInformationList = "DeviceInformacionList";

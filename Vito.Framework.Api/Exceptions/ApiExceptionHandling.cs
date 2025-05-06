@@ -30,7 +30,7 @@ public class ApiExceptionHandling(RequestDelegate _next, ILogger<ApiExceptionHan
             var problemDetails = new CustomValidationProblemDetails(new List<ValidationError> { new() { Code = e.Code, Message = e.Message } })
             {
                 Type = FrameworkConstants.ApplicationNamespace,
-                Title = "One or more validation errors occurred.",
+                Title = "Validator_Title",
                 Status = (int)HttpStatusCode.BadRequest,
                 Instance = context.Request.Path,
             };
@@ -43,7 +43,7 @@ public class ApiExceptionHandling(RequestDelegate _next, ILogger<ApiExceptionHan
             var problemDetails = new ProblemDetails
             {
                 Type = FrameworkConstants.ApplicationNamespace,
-                Title = "Internal Server Error.",
+                Title = "Validator_InternalServerError",
                 Status = (int)HttpStatusCode.InternalServerError,
                 Instance = context.Request.Path,
                 Detail = ex.Message

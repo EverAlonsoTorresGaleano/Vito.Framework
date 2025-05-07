@@ -39,7 +39,7 @@ public class FrameworkConstants
 
     //User Name
     public const string Username_UserApi = "api-user";
-    public const long UserId_UserUnknown = 0;
+    public const long UserId_UserUnknown = 2;
 
 
     //Company

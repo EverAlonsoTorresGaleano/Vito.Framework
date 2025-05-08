@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Vito.Framework.Common.Extensions;
 
@@ -48,17 +49,53 @@ public static class CommonExtensions
         return tokenString;
     }
 
-    public static string Serialize(this object entity)
+    public static string ReplaceParameterOnString(this string? baseString, List<KeyValuePair<string, string>> parameters, string paramPrefix = "{{", string paramSufix = "}}")
     {
-        var resultValue = JsonSerializer.Serialize(entity);
+        StringBuilder finalString = new(baseString);
+        if (parameters is not null)
+        {
+            parameters.ForEach(parameter =>
+            {
+                finalString = finalString.Replace($"{paramPrefix}{parameter.Key}{paramSufix}", parameter.Value);
+            });
+        }
+        return finalString.ToString();
+    }
+
+    public static T CloneEntity<T>(this T entityToClone)
+    {
+        string cloneString = entityToClone.Serialize();
+        T clonedEntity = cloneString.Deserialize<T>();
+        return clonedEntity;
+    }
+
+    public static string Serialize(this object entity, int maxNestedEntities = 0)
+    {
+
+        JsonSerializerOptions options = new JsonSerializerOptions
+        {
+
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            MaxDepth = maxNestedEntities,
+            ReferenceHandler = ReferenceHandler.IgnoreCycles,
+
+        };
+        var resultValue = JsonSerializer.Serialize(entity, options);
         return resultValue;
     }
 
-    public static T Deserialize<T>(this string serializedText)
+    public static T Deserialize<T>(this string serializedText, int maxNestedEntities = 0)
     {
         try
         {
-            T returnEntity = (T)JsonSerializer.Deserialize<T>(serializedText);
+            JsonSerializerOptions options = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                MaxDepth = maxNestedEntities,
+                ReferenceHandler = ReferenceHandler.IgnoreCycles
+
+            };
+            T returnEntity = (T)JsonSerializer.Deserialize<T>(serializedText, options);
 
             return returnEntity;
         }
@@ -92,14 +129,4 @@ public static class CommonExtensions
         return propertyValueDecimal;
     }
 
-    //public static T DeepClone<T>(this T a)
-    //{
-    //    using (MemoryStream stream = new MemoryStream())
-    //    {
-    //        var formatter = new BinaryFormatter();
-    //        formatter.Serialize(out m, a);
-    //        stream.Position = 0;
-    //        return (T)formatter.Deserialize(stream);
-    //    }
-    //}
 }

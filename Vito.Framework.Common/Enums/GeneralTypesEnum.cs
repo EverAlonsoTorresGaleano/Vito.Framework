@@ -13,7 +13,7 @@ public enum GeneralTypesGroupEnum
     GeneralType_OAuthActionType = 4,
     GeneralType_LocationType = 5,
     GeneralType_SequenceType = 6,
-    GeneralType_EntityAuditTypes = 7,
+    GeneralType_EntityAuditType = 7,
 }
 
 
@@ -77,3 +77,10 @@ public enum SequenceType_Enum
     SequenceType_RoleName = 33,
 }
 
+public enum EntityAuditTypeEnum
+{
+    EntityAuditType_Read = 34,
+    EntityAuditType_AddRow = 35,
+    EntityAuditType_DeleteRow = 36,
+    EntityAuditType_UpdateRow = 37,
+}

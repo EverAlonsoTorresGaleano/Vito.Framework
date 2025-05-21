@@ -254,7 +254,7 @@ public static class ApiDefaultsExtensions
                 ValidateIssuer = true,
                 ValidateAudience = true,
                 ValidateLifetime = true,
-
+                 
                 ClockSkew = TimeSpan.Zero,
             };
         });

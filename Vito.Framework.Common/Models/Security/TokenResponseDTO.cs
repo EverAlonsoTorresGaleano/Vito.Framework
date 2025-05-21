@@ -2,7 +2,7 @@
 
 
 //[JsonSerializable(typeof(TokenStatusEnum))]
-public class TokenResponseDTO
+public record TokenResponseDTO
 {
     public string? access_token { get; set; }
     public string? token_type { get; set; }

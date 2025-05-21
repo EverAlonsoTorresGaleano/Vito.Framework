@@ -22,3 +22,15 @@ public enum ConnectionStringTypeEnum
 {
     SQLServer
 }
+
+public enum CustomClaimTypes
+{
+    ApplicationOwnerId,
+    ApplicationOwnerName,
+    ApplicationId,
+    ApplicationName,
+    CompanyId,
+    CompanyName,
+    RoleId,
+    RoleName
+}

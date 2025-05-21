@@ -2,7 +2,7 @@
 
 
 //[JsonSerializable(typeof(TokenGrantTypeEnum))]
-public class TokenRequestDTO
+public record TokenRequestDTO
 {
     public string grant_type { get; set; } = "ClientCredentials";
     public string? scope { get; set; }

@@ -10,6 +10,9 @@ public record DeviceInformationDTO
     public string? Platform;
     public string? Engine;
     public string? CultureId;
-    public string? Scope;
+    public string? EndPointUrl;
+    public string? Method;
+    public string? JwtToken;
     public List<KeyValuePair<string, string>>? AddtionalInfo;
+
 };

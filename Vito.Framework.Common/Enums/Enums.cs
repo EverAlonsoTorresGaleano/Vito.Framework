@@ -32,5 +32,9 @@ public enum CustomClaimTypes
     CompanyId,
     CompanyName,
     RoleId,
-    RoleName
+    RoleName,
+    UserId,
+    UserName,
+    GivenName,
+    Email
 }

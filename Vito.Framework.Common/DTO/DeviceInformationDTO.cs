@@ -3,7 +3,7 @@
 public record DeviceInformationDTO
 {
     public string? Id;
-    public string? Name;
+    public string? HostName;
     public string? IpAddress;
     public string? DeviceType;
     public string? Browser;
@@ -12,7 +12,12 @@ public record DeviceInformationDTO
     public string? CultureId;
     public string? EndPointUrl;
     public string? Method;
-    public string? JwtToken;
-    public List<KeyValuePair<string, string>>? AddtionalInfo;
-
+    public string? QueryString;
+    public string? UserAgent;
+    public string? Referer;
+    public long? ApplicationId;
+    public long? CompanyId;
+    public long? RoleId;
+    public long? UserId;
 };
+

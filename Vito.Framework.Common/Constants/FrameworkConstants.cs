@@ -40,6 +40,7 @@ public class FrameworkConstants
     //User Name
     public const string Username_UserApi = "api-user";
     public const long UserId_UserUnknown = 2;
+    public const long RoleId_UserUnknown=2;
 
 
     //Company
@@ -62,4 +63,6 @@ public class FrameworkConstants
     public const string SQL_CONNECTION_STRING_EMPTY = "DataBaseService Context is not configured due ConnectionStrings:SqlServerDataBase was empty.";
     public const string ApplicationNamespace = "Vito.Framework.Common";
 
+
+    public const string Separator_Comma = ",";
 }

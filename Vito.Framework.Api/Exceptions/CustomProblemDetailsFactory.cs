@@ -9,8 +9,8 @@ namespace Vito.Framework.Api.Exceptions;
 
 public class CustomProblemDetailsFactory : ProblemDetailsFactory
 {
-    public override ProblemDetails CreateProblemDetails(HttpContext httpContext, int? statusCode = null, string title = null,
-        string type = null, string detail = null, string instance = null)
+    public override ProblemDetails CreateProblemDetails(HttpContext httpContext, int? statusCode = null, string? title = null,
+        string? type = null, string? detail = null, string? instance = null)
     {
         var problemDetails = new ProblemDetails
         {
@@ -25,8 +25,8 @@ public class CustomProblemDetailsFactory : ProblemDetailsFactory
     }
 
     public override ValidationProblemDetails CreateValidationProblemDetails(HttpContext httpContext,
-        ModelStateDictionary modelStateDictionary, int? statusCode = null, string title = null, string type = null,
-        string detail = null, string instance = null)
+        ModelStateDictionary modelStateDictionary, int? statusCode = null, string? title = null, string? type = null,
+        string? detail = null, string? instance = null)
     {
         statusCode ??= 400;
         type ??= FrameworkConstants.ApiExceptionHandling_ExceptionHandlingType;
@@ -36,7 +36,7 @@ public class CustomProblemDetailsFactory : ProblemDetailsFactory
         {
             Status = statusCode,
             Type = type,
-            Detail = detail,
+            Detail = detail!,
             Instance = instance,
         };
 

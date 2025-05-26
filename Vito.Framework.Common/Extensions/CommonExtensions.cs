@@ -1,7 +1,9 @@
-﻿using System.Security.Cryptography;
+﻿using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Vito.Framework.Common.Constants;
 
 namespace Vito.Framework.Common.Extensions;
 
@@ -62,10 +64,10 @@ public static class CommonExtensions
         return finalString.ToString();
     }
 
-    public static T CloneEntity<T>(this T entityToClone)
+    public static T? CloneEntity<T>(this T entityToClone)
     {
-        string cloneString = entityToClone.Serialize();
-        T clonedEntity = cloneString.Deserialize<T>();
+        string cloneString = entityToClone!.Serialize()!;
+        T clonedEntity = cloneString.Deserialize<T>()!;
         return clonedEntity;
     }
 
@@ -84,7 +86,7 @@ public static class CommonExtensions
         return resultValue;
     }
 
-    public static T Deserialize<T>(this string serializedText, int maxNestedEntities = 0)
+    public static T? Deserialize<T>(this string serializedText, int maxNestedEntities = 0)
     {
         try
         {
@@ -95,20 +97,20 @@ public static class CommonExtensions
                 ReferenceHandler = ReferenceHandler.IgnoreCycles
 
             };
-            T returnEntity = (T)JsonSerializer.Deserialize<T>(serializedText, options);
+            T returnEntity = (T)JsonSerializer.Deserialize<T>(serializedText, options)!;
 
             return returnEntity;
         }
-        catch (Exception exception)
+        catch 
         {
-            return (T)Activator.CreateInstance(typeof(T));
+            return (T)Activator.CreateInstance(typeof(T))!;
         }
     }
 
     public static string GetEnumByValue<T>(this T enumList, object value)
     {
-        var enumValue = Enum.Parse(typeof(T), value.ToString(), true).ToString();
-        return enumValue;
+        var enumValue = Enum.Parse(typeof(T), value.ToString()!, true).ToString();
+        return enumValue!;
     }
 
     public static object? GetFieldValueFromEntity(this object entity, string fieldName)
@@ -125,8 +127,71 @@ public static class CommonExtensions
     public static decimal GetFieldValueDecimalFromEntity(this object entity, string fieldName)
     {
         var propertyValue = GetFieldValueFromEntity(entity, fieldName);
-        decimal propertyValueDecimal = propertyValue == null ? decimal.Zero : decimal.Parse(propertyValue!.ToString());
+        decimal propertyValueDecimal = propertyValue == null ? decimal.Zero : decimal.Parse(propertyValue!.ToString()!);
         return propertyValueDecimal;
+    }
+
+    public static object GetPropertyValue(this object entity, string PropertyName)
+    {
+        PropertyInfo infoColumna = entity.GetType().GetProperty(PropertyName)!;
+        return infoColumna.GetValue(entity, null)!;
+    }
+
+    public static string GetEntityChangesSummary(this object oldEntity, object? newEntity = null)
+    {
+        List<PropertyInfo> propertyList = oldEntity.GetType().GetProperties().ToList();
+        List<KeyValuePair<string, string>> changeList = new();
+
+        object? oldPropertyValue = null;
+        object? newPropertyValue = null;
+        propertyList.ForEach(itemProperty =>
+        {
+            if (!itemProperty.Name.Contains("Navigation") && itemProperty.PropertyType.FullName!.Contains("System"))
+            {
+                oldPropertyValue = GetPropertyValue(oldEntity, itemProperty.Name);
+                if (newEntity is not null)
+                {
+                    newPropertyValue = newEntity is null ? null : GetPropertyValue(newEntity, itemProperty.Name);
+                    if (!string.IsNullOrEmpty(oldPropertyValue?.ToString()) && !oldPropertyValue!.ToString()!.Equals(newPropertyValue!.ToString(), StringComparison.Ordinal))
+                    {
+                        changeList.Add(new(itemProperty.Name, $"Before= {oldPropertyValue} | After={newPropertyValue}"));
+                    }
+                }
+                else //Single Entity
+                {
+                    if (!string.IsNullOrEmpty(oldPropertyValue?.ToString()))
+                    {
+                        changeList.Add(new(itemProperty.Name, oldPropertyValue!.ToString()!));
+                    }
+                }
+            }
+        });
+
+        var returnJson = changeList.Serialize();
+        return returnJson;
+    }
+
+    public static DateTime? ToLocalTimeNullable(this DateTime? utcTime)
+    {
+        DateTime? localTime = null!;
+        if (utcTime is null)
+        {
+            localTime = null!;
+        }
+        else
+        {
+            localTime = utcTime.Value.ToLocalTime();
+        }
+        return localTime;
+    }
+
+    public static object[]? ValidateParamArray(this object[]? parameters)
+    {
+        if (parameters?.Length == 1 && parameters.First().ToString()!.Contains(FrameworkConstants.Separator_Comma))
+        {
+            parameters = parameters.First().ToString()!.Split(FrameworkConstants.Separator_Comma);
+        }
+        return parameters;
     }
 
 }

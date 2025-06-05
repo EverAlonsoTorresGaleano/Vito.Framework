@@ -40,11 +40,13 @@ public class FrameworkConstants
     //User Name
     public const string Username_UserApi = "api-user";
     public const long UserId_UserUnknown = 2;
-    public const long RoleId_UserUnknown=2;
+    public const long RoleId_UserUnknown = 2;
 
 
     //Company
     public const long Company_DefaultId = 1;
+
+    public const long Application_DefaultId = 1;
 
     //HttpContext
     public const string HttpContext_DeviceInformationList = "DeviceInformacionList";

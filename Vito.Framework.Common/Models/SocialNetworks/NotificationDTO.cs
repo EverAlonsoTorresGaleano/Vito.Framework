@@ -34,9 +34,9 @@ public class NotificationDTO
 
 
 
-    public string CompanyNameTranslationKey { get; set; }
-    public string CompanyDescriptionTranslationKey { get; set; } = null!;
-    public string NotificationTypeNameTranslationKey { get; set; }
-    public string NotificationTemplateName { get; set; }
-    public string CultureNameTranslationKey { get; set; }
+    public string? CompanyNameTranslationKey { get; set; }
+    public string? CompanyDescriptionTranslationKey { get; set; } = null!;
+    public string? NotificationTypeNameTranslationKey { get; set; }
+    public string? NotificationTemplateName { get; set; }
+    public string? CultureNameTranslationKey { get; set; }
 }

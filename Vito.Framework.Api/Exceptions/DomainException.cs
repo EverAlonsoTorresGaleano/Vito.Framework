@@ -2,10 +2,10 @@
 
 public class DomainException : Exception
 {
-    public DomainException(string message, string code = null)
+    public DomainException(string message, string? code = null)
         : base(message)
     {
-        Code = code;
+        Code = code!;
     }
 
     public string Code { get; }

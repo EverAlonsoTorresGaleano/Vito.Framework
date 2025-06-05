@@ -8,11 +8,11 @@ public class ValidationError
     /// The error code
     /// </summary>
     [JsonPropertyName("code")]
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
     /// <summary>
     /// A message from and to the Developer
     /// </summary>
     [JsonPropertyName("message")]
-    public string Message { get; set; }
+    public string? Message { get; set; }
 }

@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Text.Json;
 using Vito.Framework.Common.Constants;
+using Vito.Framework.Common.Extensions;
 
 namespace Vito.Framework.Api.Exceptions;
 
@@ -35,6 +37,19 @@ public class ApiExceptionHandling(RequestDelegate _next, ILogger<ApiExceptionHan
                 Instance = context.Request.Path,
             };
             context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            result = JsonSerializer.Serialize(problemDetails);
+        }
+        else if (ex is RetryLimitExceededException)
+        {
+            var problemDetails = new ProblemDetails
+            {
+                Type = FrameworkConstants.ApplicationNamespace,
+                Title = "Validator_DatabaseError",
+                Status = (int)HttpStatusCode.InternalServerError,
+                Instance = context.Request.Path,
+                Detail = ex.Message + ex.InnerException?.Message,
+            };
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             result = JsonSerializer.Serialize(problemDetails);
         }
         else

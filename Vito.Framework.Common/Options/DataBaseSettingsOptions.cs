@@ -1,7 +1,7 @@
 ﻿using Vito.Framework.Common.Constants;
 using Vito.Framework.Common.Options;
 
-namespace Vito.Transverse.Identity.Domain.Options;
+namespace Vito.Framework.Common.Options;
 
 public record DataBaseSettingsOptions
 {

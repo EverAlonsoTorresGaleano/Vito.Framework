@@ -223,14 +223,16 @@ public static class ApiDefaultsExtensions
         return builder;
     }
 
-    public static IHostApplicationBuilder AddCorsOnlyForAuthorizedUrls(this IHostApplicationBuilder builder, string[] authorizedUrls)
+    public static IHostApplicationBuilder AddCorsOnlyForAuthorizedUrls(this IHostApplicationBuilder builder, string[] authorizedUrls, int prelightCacheMinutes = 10)
     {
         builder.Services.AddCors(options =>
         {
             options.AddDefaultPolicy(p => p.WithOrigins(authorizedUrls)
                 .AllowAnyMethod()
                 .AllowCredentials()
-                .AllowAnyHeader());
+                .AllowAnyHeader()
+                .SetPreflightMaxAge(TimeSpan.FromMinutes(prelightCacheMinutes))
+            );
         });
         return builder;
     }
@@ -254,7 +256,7 @@ public static class ApiDefaultsExtensions
                 ValidateIssuer = true,
                 ValidateAudience = true,
                 ValidateLifetime = true,
-                 
+
                 ClockSkew = TimeSpan.Zero,
             };
         });

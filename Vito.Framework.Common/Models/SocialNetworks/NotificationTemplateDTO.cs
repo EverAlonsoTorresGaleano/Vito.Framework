@@ -15,4 +15,7 @@ public class NotificationTemplateDTO
     public string? MessageTemplateText { get; set; }
 
     public bool IsHtml { get; set; }
+
+    public string? CultureNameTranslationKey { get; set; }
+    
 }

@@ -10,6 +10,7 @@ public record DeviceInformationDTO
     public string? Platform;
     public string? Engine;
     public string? CultureId;
+    public string? EndPointPattern;
     public string? EndPointUrl;
     public string? Method;
     public string? QueryString;
